@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BioNaturePro — Portal de Nutrición Vegetal y Manejo del Suelo</title>
+<meta name="description" content="Portal educativo independiente sobre botánica, nutrición vegetal y manejo sostenible del suelo para entusiastas del cultivo doméstico.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --paper: #f6f3e9;
+    --paper-alt: #eee8d9;
+    --ink: #1e2a20;
+    --ink-soft: #4d5a4c;
+    --green-deep: #16362b;
+    --green-main: #2f6b4f;
+    --green-line: #a9c3ac;
+    --green-tint: #e3e9df;
+    --clay: #a9743c;
+    --line: #d8d0bb;
+    --white: #ffffff;
+
+    --font-display: 'Fraunces', Georgia, serif;
+    --font-body: 'Inter', -apple-system, "Segoe UI", sans-serif;
+    --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+  }
+
+  *{ box-sizing: border-box; margin: 0; padding: 0; }
+  html{ scroll-behavior: smooth; }
+
+  body{
+    font-family: var(--font-body);
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a{ color: inherit; text-decoration: none; }
+  ul{ list-style: none; }
+  img, svg{ display:block; max-width:100%; }
+
+  .container{
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  ::selection{ background: var(--green-tint); color: var(--green-deep); }
+
+  .eyebrow{
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--clay);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .eyebrow::before{
+    content: "";
+    width: 22px;
+    height: 1px;
+    background: var(--clay);
+    display: inline-block;
+  }
+
+  h1, h2, h3{
+    font-family: var(--font-display);
+    font-weight: 500;
+    color: var(--green-deep);
+    letter-spacing: -0.01em;
+  }
+
+  /* ---------- HEADER ---------- */
+  header{
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(246,243,233,0.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav-wrap{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 32px;
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+
+  .brand{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .brand-mark{
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+  }
+
+  .brand-text{
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+
+  .brand-text .logo-text{
+    font-family: var(--font-display);
+    font-size: 1.32rem;
+    font-weight: 600;
+    color: var(--green-deep);
+    letter-spacing: -0.01em;
+  }
+
+  .brand-text .tagline{
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    color: var(--ink-soft);
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  nav.menu ul{
+    display: flex;
+    gap: 40px;
+  }
+
+  nav.menu a{
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--ink);
+    padding: 6px 1px;
+    position: relative;
+  }
+
+  nav.menu a::after{
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: -2px;
+    height: 1px;
+    background: var(--green-main);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.25s ease;
+  }
+
+  nav.menu a:hover::after, nav.menu a:focus-visible::after{ transform: scaleX(1); }
+
+  .menu-toggle{
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+  }
+
+  .menu-toggle span{
+    display: block;
+    width: 22px;
+    height: 1.5px;
+    background: var(--green-deep);
+    margin: 5px 0;
+    transition: 0.25s;
+  }
+
+  /* ---------- BUTTONS ---------- */
+  .btn{
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--green-deep);
+    color: var(--paper);
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.88rem;
+    letter-spacing: 0.01em;
+    padding: 15px 30px;
+    border-radius: 2px;
+    border: 1px solid var(--green-deep);
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
+  }
+
+  .btn:hover, .btn:focus-visible{
+    background: var(--green-main);
+    border-color: var(--green-main);
+    transform: translateY(-1px);
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding: 96px 32px 40px;
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+
+  .hero-grid{
+    display: grid;
+    grid-template-columns: 1fr 0.9fr;
+    gap: 64px;
+    align-items: center;
+  }
+
+  .hero h1{
+    font-size: clamp(2.1rem, 3.6vw, 3.15rem);
+    line-height: 1.14;
+    margin: 20px 0 22px;
+  }
+
+  .hero h1 em{
+    font-style: italic;
+    color: var(--green-main);
+  }
+
+  .hero p.lead{
+    font-size: 1.06rem;
+    color: var(--ink-soft);
+    max-width: 480px;
+    margin-bottom: 34px;
+  }
+
+  .hero-actions{
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .hero-actions .link-text{
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  .hero-plate{
+    background: var(--paper-alt);
+    border: 1px solid var(--line);
+    padding: 28px;
+    position: relative;
+  }
+
+  .hero-plate .plate-label{
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  /* ---------- SECTION GENERIC ---------- */
+  section{
+    padding: 96px 32px;
+  }
+
+  .section-head{
+    max-width: 680px;
+    margin: 0 auto 56px;
+  }
+
+  .section-head.centered{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .section-head h2{
+    font-size: clamp(1.7rem, 2.6vw, 2.25rem);
+    margin-top: 14px;
+    line-height: 1.22;
+  }
+
+  .section-head p{
+    color: var(--ink-soft);
+    margin-top: 16px;
+    font-size: 1rem;
+    max-width: 560px;
+  }
+
+  .section-head.centered p{ margin-left: auto; margin-right: auto; }
+
+  hr.divider{
+    border: none;
+    border-top: 1px solid var(--line);
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+
+  /* ---------- SOBRE ---------- */
+  .about{
+    background: var(--white);
+  }
+
+  .about-grid{
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 72px;
+    align-items: start;
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+
+  .about-text p{
+    color: var(--ink);
+    margin-bottom: 18px;
+    font-size: 1.02rem;
+    max-width: 560px;
+  }
+
+  .about-text p:last-child{ margin-bottom: 0; }
+
+  .about-figures{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    margin-top: 30px;
+  }
+
+  .fig-stat{
+    background: var(--white);
+    padding: 30px 26px;
+  }
+
+  .fig-stat .num{
+    font-family: var(--font-display);
+    font-size: 2.1rem;
+    color: var(--green-deep);
+    font-weight: 500;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .fig-stat .label{
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* ---------- PILARES NPK — specimen cards ---------- */
+  .pilares{
+    background: var(--green-deep);
+    color: var(--paper);
+  }
+
+  .pilares .section-head h2{ color: var(--paper); }
+  .pilares .section-head p{ color: rgba(246,243,233,0.65); }
+  .pilares .eyebrow{ color: #d3a869; }
+  .pilares .eyebrow::before{ background: #d3a869; }
+
+  .npk-grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(246,243,233,0.16);
+    max-width: 1180px;
+    margin: 0 auto;
+    border: 1px solid rgba(246,243,233,0.16);
+  }
+
+  .npk-card{
+    background: var(--green-deep);
+    padding: 40px 32px;
+    position: relative;
+  }
+
+  .npk-card .specimen-tag{
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: rgba(246,243,233,0.5);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 28px;
+  }
+
+  .npk-symbol{
+    font-family: var(--font-display);
+    font-size: 3rem;
+    font-weight: 500;
+    color: #d3a869;
+    line-height: 1;
+    margin-bottom: 20px;
+  }
+
+  .npk-card .element-name{
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: rgba(246,243,233,0.55);
+    margin-bottom: 10px;
+  }
+
+  .npk-card h3{
+    font-size: 1.18rem;
+    color: var(--paper);
+    margin-bottom: 14px;
+    font-weight: 500;
+  }
+
+  .npk-card p{
+    color: rgba(246,243,233,0.72);
+    font-size: 0.93rem;
+    line-height: 1.7;
+  }
+
+  /* ---------- PRÁCTICAS — field notes list ---------- */
+  .praticas{
+    background: var(--paper);
+  }
+
+  .praticas-list{
+    max-width: 1180px;
+    margin: 0 auto;
+    border-top: 1px solid var(--line);
+  }
+
+  .pratica-item{
+    display: grid;
+    grid-template-columns: 90px 1fr 2fr;
+    gap: 32px;
+    padding: 34px 0;
+    border-bottom: 1px solid var(--line);
+    align-items: start;
+  }
+
+  .pratica-item .idx{
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--clay);
+    padding-top: 4px;
+  }
+
+  .pratica-item h3{
+    font-size: 1.15rem;
+    font-weight: 500;
+    padding-top: 1px;
+  }
+
+  .pratica-item p{
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    max-width: 560px;
+  }
+
+  /* ---------- CONTACTO ---------- */
+  .contato{
+    background: var(--paper-alt);
+  }
+
+  .contato-grid{
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 72px;
+    max-width: 1180px;
+    margin: 0 auto;
+    align-items: start;
+  }
+
+  .contato-info p{
+    color: var(--ink-soft);
+    font-size: 1rem;
+    max-width: 400px;
+    margin-top: 16px;
+  }
+
+  .contato-info .meta{
+    margin-top: 40px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+    line-height: 2;
+  }
+
+  .form-group{
+    margin-bottom: 28px;
+  }
+
+  .form-group label{
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    color: var(--ink-soft);
+  }
+
+  .form-group input,
+  .form-group textarea{
+    width: 100%;
+    padding: 12px 2px;
+    border: none;
+    border-bottom: 1px solid var(--ink-soft);
+    background: transparent;
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    border-radius: 0;
+  }
+
+  .form-group textarea{
+    min-height: 100px;
+    resize: vertical;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus{
+    outline: none;
+    border-bottom-color: var(--green-main);
+  }
+
+  .form-note{
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    color: var(--ink-soft);
+    margin-top: 18px;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background: var(--green-deep);
+    color: rgba(246,243,233,0.75);
+    padding: 64px 32px 30px;
+  }
+
+  .footer-grid{
+    max-width: 1180px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(246,243,233,0.14);
+  }
+
+  .footer-brand .logo-text{
+    font-family: var(--font-display);
+    color: var(--paper);
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 14px;
+  }
+
+  .footer-brand p{
+    font-size: 0.88rem;
+    line-height: 1.75;
+    color: rgba(246,243,233,0.58);
+    max-width: 340px;
+  }
+
+  .footer-col h4{
+    font-family: var(--font-mono);
+    color: var(--paper);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    margin-bottom: 18px;
+  }
+
+  .footer-col ul li{ margin-bottom: 12px; }
+
+  .footer-col a, .footer-col button{
+    font-size: 0.88rem;
+    color: rgba(246,243,233,0.62);
+    transition: color 0.2s ease;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    padding: 0;
+  }
+
+  .footer-col a:hover, .footer-col button:hover{ color: var(--paper); }
+
+  .footer-bottom{
+    max-width: 1180px;
+    margin: 26px auto 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.02em;
+    color: rgba(246,243,233,0.45);
+  }
+
+  /* ---------- MODAL ---------- */
+  .modal-overlay{
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(22,54,43,0.55);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+
+  .modal-overlay.active{ display: flex; }
+
+  .modal-box{
+    background: var(--paper);
+    max-width: 580px;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+    border-radius: 2px;
+    padding: 44px;
+    position: relative;
+    border-top: 3px solid var(--green-deep);
+  }
+
+  .modal-box .eyebrow{ margin-bottom: 14px; }
+
+  .modal-box h3{
+    margin-bottom: 20px;
+    font-size: 1.4rem;
+  }
+
+  .modal-box p{
+    font-size: 0.94rem;
+    color: var(--ink-soft);
+    margin-bottom: 14px;
+  }
+
+  .modal-close{
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+    color: var(--ink-soft);
+    padding: 4px 8px;
+    font-family: var(--font-body);
+  }
+
+  .modal-close:hover{ color: var(--green-deep); }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 900px){
+    nav.menu{
+      position: fixed;
+      top: 74px;
+      left: 0;
+      right: 0;
+      background: var(--paper);
+      border-bottom: 1px solid var(--line);
+      transform: translateY(-130%);
+      transition: transform 0.25s ease;
+      z-index: 99;
+    }
+    nav.menu.open{ transform: translateY(0); }
+    nav.menu ul{
+      flex-direction: column;
+      gap: 0;
+      padding: 8px 32px 22px;
+    }
+    nav.menu ul li{ border-bottom: 1px solid var(--line); }
+    nav.menu ul li a{ display: block; padding: 15px 0; }
+    .menu-toggle{ display: block; }
+
+    .hero-grid{ grid-template-columns: 1fr; gap: 40px; }
+    .about-grid{ grid-template-columns: 1fr; gap: 40px; }
+    .npk-grid{ grid-template-columns: 1fr; }
+    .contato-grid{ grid-template-columns: 1fr; gap: 40px; }
+    .pratica-item{ grid-template-columns: 50px 1fr; }
+    .pratica-item p{ grid-column: 2 / 3; }
+  }
+
+  @media (max-width: 560px){
+    .about-figures{ grid-template-columns: 1fr; }
+    section{ padding: 64px 22px; }
+    .hero{ padding: 72px 22px 32px; }
+    footer{ padding: 56px 22px 26px; }
+    .footer-grid{ grid-template-columns: 1fr; gap: 32px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition: none !important; scroll-behavior: auto !important; }
+  }
+
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header>
+  <div class="nav-wrap">
+    <div class="brand">
+      <svg class="brand-mark" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="20" cy="20" r="19" fill="none" stroke="#16362b" stroke-width="1"/>
+        <path d="M20 8c6 5 8 9 8 13.5A8 8 0 0112 21.5C12 17 14 13 20 8z" fill="none" stroke="#16362b" stroke-width="1.3"/>
+        <path d="M20 12v20" stroke="#16362b" stroke-width="1"/>
+      </svg>
+      <div class="brand-text">
+        <span class="logo-text">BioNaturePro</span>
+        <span class="tagline">Botanical Research &amp; Natural Plant Care</span>
+      </div>
+    </div>
+    <nav class="menu" id="mainMenu">
+      <ul>
+        <li><a href="#sobre">Sobre Nosotros</a></li>
+        <li><a href="#nutricion">Nutrición Vegetal</a></li>
+        <li><a href="#practicas">Prácticas Sostenibles</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mainMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow">Portal Educativo de Botánica</span>
+      <h1>Fundamentos de la <em>nutrición vegetal</em> y el manejo sostenible del suelo</h1>
+      <p class="lead">Contenido técnico y divulgativo sobre macronutrientes naturales, compostaje y buenas prácticas de cultivo, elaborado para entusiastas de la jardinería doméstica y el cultivo sostenible.</p>
+      <div class="hero-actions">
+        <a href="#nutricion" class="btn">Explorar guías y artículos</a>
+        <a href="#sobre" class="link-text">Conocer el proyecto →</a>
+      </div>
+    </div>
+
+    <div class="hero-plate">
+      <div class="plate-label">
+        <span>Lámina Nº 01</span>
+        <span>Perfil de suelo</span>
+      </div>
+      <svg viewBox="0 0 460 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagrama de raíz y perfil de suelo con anotaciones">
+        <line x1="0" y1="70" x2="460" y2="70" stroke="#c7bd9e" stroke-width="1" stroke-dasharray="2 4"/>
+        <text x="0" y="58" font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="1.5" fill="#4d5a4c">SUPERFICIE</text>
+
+        <path d="M230 70 C230 105, 195 112, 188 150 C182 182, 158 195, 145 228" stroke="#2f6b4f" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+        <path d="M230 70 C230 105, 268 112, 280 145 C289 172, 315 185, 332 220" stroke="#2f6b4f" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+        <path d="M230 70 L233 260" stroke="#16362b" stroke-width="3.4" fill="none" stroke-linecap="round"/>
+        <path d="M231 108 C216 118, 200 118, 185 128" stroke="#5c9270" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+        <path d="M232 140 C250 149, 264 149, 279 161" stroke="#5c9270" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+        <path d="M232 172 C218 181, 206 181, 192 190" stroke="#5c9270" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+        <path d="M233 205 C248 213, 258 213, 271 224" stroke="#5c9270" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+
+        <circle cx="150" cy="95" r="2" fill="#a9743c"/>
+        <circle cx="330" cy="130" r="2" fill="#a9743c"/>
+        <circle cx="185" cy="200" r="2" fill="#a9743c"/>
+        <circle cx="300" cy="180" r="2" fill="#a9743c"/>
+        <circle cx="270" cy="90" r="2" fill="#a9743c"/>
+        <circle cx="110" cy="160" r="2" fill="#a9743c"/>
+
+        <line x1="330" y1="130" x2="400" y2="115" stroke="#a9743c" stroke-width="0.8" stroke-dasharray="1.5 3"/>
+        <text x="400" y="112" font-family="IBM Plex Mono, monospace" font-size="9" fill="#4d5a4c">Nutrientes disueltos</text>
+
+        <line x1="150" y1="228" x2="60" y2="255" stroke="#a9743c" stroke-width="0.8" stroke-dasharray="1.5 3"/>
+        <text x="0" y="270" font-family="IBM Plex Mono, monospace" font-size="9" fill="#4d5a4c">Zona de absorción</text>
+
+        <line x1="233" y1="200" x2="380" y2="255" stroke="#a9743c" stroke-width="0.8" stroke-dasharray="1.5 3"/>
+        <text x="330" y="270" font-family="IBM Plex Mono, monospace" font-size="9" fill="#4d5a4c">Raíz principal</text>
+
+        <line x1="0" y1="300" x2="460" y2="300" stroke="#c7bd9e" stroke-width="1" stroke-dasharray="2 4"/>
+        <text x="0" y="316" font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="1.5" fill="#4d5a4c">HORIZONTE ORGÁNICO</text>
+        <text x="0" y="400" font-family="IBM Plex Mono, monospace" font-size="9" fill="#4d5a4c">Fig. 1 — Interacción raíz-suelo. Ilustración esquemática.</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ================= SOBRE ================= -->
+<section class="about" id="sobre">
+  <div class="about-grid">
+    <div>
+      <span class="eyebrow">Sobre el Proyecto</span>
+      <h2 class="section-head" style="margin-bottom:0; max-width: 420px;">Un portal dedicado a la ciencia de la nutrición vegetal</h2>
+    </div>
+    <div class="about-text">
+      <p><strong>BioNaturePro</strong> es un portal informativo y educativo independiente, creado con el propósito de reunir y organizar conocimiento técnico sobre los macronutrientes esenciales para el desarrollo de las plantas: nitrógeno, fósforo y potasio.</p>
+      <p>Nuestro contenido está dirigido a entusiastas de la jardinería doméstica, pequeños cultivadores y personas interesadas en la botánica, que buscan comprender de forma clara y responsable los procesos naturales que sostienen el crecimiento vegetal.</p>
+      <p>Todo el material publicado tiene carácter exclusivamente divulgativo, basado en principios ampliamente reconocidos de la fisiología vegetal y el manejo del suelo.</p>
+
+      <div class="about-figures">
+        <div class="fig-stat">
+          <span class="num">03</span>
+          <span class="label">Macronutrientes primarios</span>
+        </div>
+        <div class="fig-stat">
+          <span class="num">04</span>
+          <span class="label">Ejes de práctica sostenible</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PILARES NPK ================= -->
+<section class="pilares" id="nutricion">
+  <div class="section-head centered">
+    <span class="eyebrow">Nutrición Vegetal</span>
+    <h2>Los tres pilares del NPK natural</h2>
+    <p>Una introducción al papel funcional de cada macronutriente dentro del ciclo de desarrollo de las plantas.</p>
+  </div>
+  <div class="npk-grid">
+    <div class="npk-card">
+      <div class="specimen-tag">
+        <span>Nº 07</span>
+        <span>N</span>
+      </div>
+      <div class="npk-symbol">N</div>
+      <span class="element-name">Nitrógeno</span>
+      <h3>Desarrollo foliar y fotosíntesis</h3>
+      <p>El nitrógeno es un componente estructural de la clorofila y de las proteínas vegetales, y participa directamente en los procesos de fotosíntesis y en el crecimiento de las hojas.</p>
+    </div>
+    <div class="npk-card">
+      <div class="specimen-tag">
+        <span>Nº 15</span>
+        <span>P</span>
+      </div>
+      <div class="npk-symbol">P</div>
+      <span class="element-name">Fósforo</span>
+      <h3>Enraizamiento y floración</h3>
+      <p>El fósforo contribuye al desarrollo del sistema radicular y a los procesos energéticos implicados en la floración y en la formación de semillas.</p>
+    </div>
+    <div class="npk-card">
+      <div class="specimen-tag">
+        <span>Nº 19</span>
+        <span>K</span>
+      </div>
+      <div class="npk-symbol">K</div>
+      <span class="element-name">Potasio</span>
+      <h3>Resistencia y equilibrio hídrico</h3>
+      <p>El potasio ayuda a regular el equilibrio hídrico de la planta y a fortalecer sus tejidos, favoreciendo la resistencia frente a variaciones del entorno.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRÁCTICAS SOSTENIBLES ================= -->
+<section class="praticas" id="practicas">
+  <div class="section-head">
+    <span class="eyebrow">Prácticas Sostenibles</span>
+    <h2>Notas de campo sobre buenas prácticas de cultivo</h2>
+    <p>Cuatro principios fundamentales para un manejo más consciente del suelo y de las plantas.</p>
+  </div>
+  <div class="praticas-list">
+    <div class="pratica-item">
+      <span class="idx">01</span>
+      <h3>Compostaje</h3>
+      <p>La transformación de residuos orgánicos en material rico en nutrientes favorece la estructura y la fertilidad natural del suelo a lo largo del tiempo.</p>
+    </div>
+    <div class="pratica-item">
+      <span class="idx">02</span>
+      <h3>Materia orgánica</h3>
+      <p>La incorporación regular de materia orgánica mejora la retención de agua y estimula la actividad biológica beneficiosa dentro del suelo.</p>
+    </div>
+    <div class="pratica-item">
+      <span class="idx">03</span>
+      <h3>Riego adecuado</h3>
+      <p>Un manejo correcto de la irrigación evita el estrés hídrico de la planta y favorece una absorción más equilibrada de los nutrientes disponibles.</p>
+    </div>
+    <div class="pratica-item">
+      <span class="idx">04</span>
+      <h3>Conservación del suelo</h3>
+      <p>Las prácticas orientadas a reducir la erosión ayudan a preservar la estructura del suelo, sosteniendo el cultivo de forma continua.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACTO ================= -->
+<section class="contato" id="contacto">
+  <div class="contato-grid">
+    <div class="contato-info">
+      <span class="eyebrow">Contacto</span>
+      <h2 style="font-size: clamp(1.6rem, 2.4vw, 2rem); margin-top: 16px;">Escríbenos</h2>
+      <p>Consultas, sugerencias de contenido o propuestas de colaboración educativa — utiliza el formulario para ponerte en contacto con el equipo de BioNaturePro.</p>
+      <div class="meta">
+        <div>Tipo — Portal educativo independiente</div>
+        <div>Ámbito — Botánica y nutrición vegetal</div>
+        <div>Alcance — Contenido en español</div>
+      </div>
+    </div>
+
+    <form id="contactForm" onsubmit="return handleContactSubmit(event)">
+      <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input type="text" id="nombre" name="nombre" required>
+      </div>
+      <div class="form-group">
+        <label for="correo">Correo electrónico</label>
+        <input type="email" id="correo" name="correo" required>
+      </div>
+      <div class="form-group">
+        <label for="mensaje">Mensaje</label>
+        <textarea id="mensaje" name="mensaje" required></textarea>
+      </div>
+      <button type="submit" class="btn">Enviar mensaje</button>
+      <p class="form-note">Este formulario se destina exclusivamente a contactos institucionales y educativos.</p>
+    </form>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo-text">BioNaturePro</div>
+      <p>BioNaturePro es un portal de contenido educativo sobre botánica y jardinería. La información aquí disponible tiene como objetivo orientar a los entusiastas del cultivo doméstico.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navegación</h4>
+      <ul>
+        <li><a href="#sobre">Sobre Nosotros</a></li>
+        <li><a href="#nutricion">Nutrición Vegetal</a></li>
+        <li><a href="#practicas">Prácticas Sostenibles</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Institucional</h4>
+      <ul>
+        <li><button onclick="openModal('modalPrivacidad')">Política de Privacidad</button></li>
+        <li><button onclick="openModal('modalTerminos')">Términos de Uso</button></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 BioNaturePro.site — Todos los derechos reservados.</span>
+    <span>Portal informativo y educativo independiente sobre botánica y nutrición vegetal.</span>
+  </div>
+</footer>
+
+<!-- ================= MODALES ================= -->
+<div class="modal-overlay" id="modalPrivacidad">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('modalPrivacidad')" aria-label="Cerrar">&times;</button>
+    <span class="eyebrow">Documento Institucional</span>
+    <h3>Política de Privacidad</h3>
+    <p>BioNaturePro es un portal informativo y educativo independiente sobre botánica y nutrición vegetal, sin vínculo con ninguna persona jurídica registrada.</p>
+    <p>Los datos proporcionados voluntariamente a través del formulario de contacto (nombre, correo electrónico y mensaje) se utilizan exclusivamente para responder a las solicitudes recibidas y no se comparten con terceros con fines comerciales.</p>
+    <p>No recopilamos datos sensibles, financieros ni de salud. Cualquier visitante puede solicitar en cualquier momento la eliminación de sus datos a través del canal de contacto disponible en esta página.</p>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modalTerminos">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('modalTerminos')" aria-label="Cerrar">&times;</button>
+    <span class="eyebrow">Documento Institucional</span>
+    <h3>Términos de Uso</h3>
+    <p>El contenido disponible en BioNaturePro.site tiene finalidad exclusivamente educativa e informativa, relacionada con la botánica, la nutrición vegetal y el manejo sostenible del suelo.</p>
+    <p>La información aquí presentada no sustituye la orientación de profesionales especializados en agronomía o ingeniería agrícola, y no constituye garantía de resultado para ningún tipo de cultivo.</p>
+    <p>Queda prohibida la reproducción total o parcial del contenido de este portal sin la debida cita de la fuente.</p>
+  </div>
+</div>
+
+<script>
+  // Menú móvil
+  const menuToggle = document.getElementById('menuToggle');
+  const mainMenu = document.getElementById('mainMenu');
+
+  menuToggle.addEventListener('click', function(){
+    const isOpen = mainMenu.classList.toggle('open');
+    menuToggle.setAttribute('aria-expanded', isOpen);
+  });
+
+  document.querySelectorAll('nav.menu a').forEach(function(link){
+    link.addEventListener('click', function(){
+      mainMenu.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Modales
+  function openModal(id){
+    document.getElementById(id).classList.add('active');
+  }
+  function closeModal(id){
+    document.getElementById(id).classList.remove('active');
+  }
+  document.querySelectorAll('.modal-overlay').forEach(function(overlay){
+    overlay.addEventListener('click', function(e){
+      if(e.target === overlay){ overlay.classList.remove('active'); }
+    });
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape'){
+      document.querySelectorAll('.modal-overlay.active').forEach(function(m){
+        m.classList.remove('active');
+      });
+    }
+  });
+
+  // Formulario de contacto (placeholder de envío)
+  function handleContactSubmit(event){
+    event.preventDefault();
+    alert('Mensaje recibido. Gracias por escribirnos — responderemos a la brevedad.');
+    event.target.reset();
+    return false;
+  }
+</script>
+
+</body>
+</html>
