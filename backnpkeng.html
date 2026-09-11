@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NPK Natural — Special Offer</title>
+
+  
+ <script>
+    window.pixelId = "6a4b99fd494799910960dde8";
+    var a = document.createElement("script");
+    a.setAttribute("async", "");
+    a.setAttribute("defer", "");
+    a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+    document.head.appendChild(a);
+  </script>
+
+  
+<style>
+  :root{
+    --cream:#FBF3E2;
+    --brown-dark:#4A3B0E;
+    --brown-deep:#3B2F0A;
+    --gold:#B8860B;
+    --gold-bright:#C9A227;
+    --ink:#2E2A1F;
+    --green:#3FA516;
+    --green-cta:#34A853;
+    --red:#D2271C;
+    --orange:#D67D16;
+    --yellow:#E8C81E;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--cream);color:var(--ink);min-height:100vh;
+    display:flex;flex-direction:column;overflow-x:hidden;
+    font-family:'Poppins','Segoe UI',system-ui,-apple-system,sans-serif;
+    -webkit-font-smoothing:antialiased}
+
+  .wrap{flex:1;width:100%;max-width:1080px;margin:0 auto;
+    padding:clamp(28px,5vw,52px) 18px clamp(40px,6vw,72px);text-align:center}
+
+  /* Headline */
+  h1{font-size:clamp(26px,6vw,52px);line-height:1.12;font-weight:800;letter-spacing:-.5px;margin-bottom:10px}
+  h1 .warn,h1 .npk{color:var(--gold)}
+  .sub{font-size:clamp(16px,4vw,26px);font-weight:600;opacity:.92}
+
+  /* Stage */
+  .stage{display:flex;align-items:center;justify-content:center;
+    gap:clamp(22px,5vw,72px);flex-wrap:wrap;margin-top:clamp(30px,5vw,48px)}
+
+  /* Wheel */
+  .wheel-area{position:relative;width:clamp(230px,72vw,380px);max-width:380px;aspect-ratio:1}
+  .pointer{position:absolute;top:-4px;left:50%;transform:translateX(-50%);z-index:7;
+    width:0;height:0;border-left:16px solid transparent;border-right:16px solid transparent;
+    border-top:28px solid var(--brown-deep);filter:drop-shadow(0 2px 2px rgba(0,0,0,.35))}
+  .rim{position:absolute;inset:0;border-radius:50%;padding:5%;
+    background:radial-gradient(circle at 35% 28%,#F6DE8E,#C9A227 55%,#8A6510 100%);
+    box-shadow:0 14px 34px rgba(74,59,14,.35),inset 0 0 0 2px rgba(255,255,255,.22)}
+  .disc{position:absolute;inset:5%;border-radius:50%;z-index:2;
+    background:conic-gradient(
+      var(--red) 0deg 90deg,
+      var(--orange) 90deg 180deg,
+      var(--yellow) 180deg 270deg,
+      var(--green) 270deg 360deg);
+    box-shadow:inset 0 0 0 3px rgba(255,255,255,.30)}
+  .lbl{position:absolute;left:50%;top:0;width:0;height:50%;transform-origin:bottom center;z-index:3}
+  .lbl span{position:absolute;left:50%;top:13%;transform:translateX(-50%);
+    font-weight:800;color:#fff;font-size:clamp(13px,3.4vw,21px);white-space:nowrap;
+    text-shadow:0 1px 2px rgba(0,0,0,.32)}
+  .lbl.a{transform:rotate(45deg)}    /* red 20% */
+  .lbl.b{transform:rotate(135deg)}   /* orange 35% */
+  .lbl.c{transform:rotate(225deg)}   /* yellow 45% */
+  .lbl.d{transform:rotate(315deg)}   /* green 54% (win) */
+  .bulbs{position:absolute;inset:0;z-index:5;pointer-events:none}
+  .bulbs i{position:absolute;width:8px;height:8px;border-radius:50%;margin:-4px;
+    background:radial-gradient(circle,#fff,#ffe9a8 60%,#e7b53a);
+    box-shadow:0 0 6px 1px rgba(255,225,150,.9)}
+  .hub{position:absolute;top:50%;left:50%;width:13%;height:13%;transform:translate(-50%,-50%);z-index:6;
+    border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,#E4C24A 60%,#9c7414);
+    box-shadow:0 2px 6px rgba(0,0,0,.35)}
+
+  /* Pitch */
+  .pitch{max-width:380px}
+  .pitch p{font-size:clamp(19px,4.6vw,30px);font-weight:700;line-height:1.3;margin-bottom:24px}
+  .pitch p .hl{color:var(--gold)}
+  .btn{border:none;cursor:pointer;font-family:inherit;font-weight:800;letter-spacing:.3px;color:#fff;
+    border-radius:16px;padding:clamp(16px,4vw,20px) clamp(34px,7vw,46px);font-size:clamp(19px,4.4vw,30px);
+    background:linear-gradient(180deg,var(--gold-bright),var(--gold));
+    box-shadow:0 8px 0 #8A6510,0 14px 22px rgba(74,59,14,.3);transition:transform .08s,box-shadow .08s,filter .1s}
+  .btn:hover{filter:brightness(1.05)}
+  .btn:active{transform:translateY(5px);box-shadow:0 3px 0 #8A6510,0 6px 12px rgba(74,59,14,.3)}
+  .btn:disabled{opacity:.55;cursor:not-allowed;transform:none}
+
+  /* Reveal */
+  #reveal{display:none;margin-top:14px;animation:pop .5s ease both}
+  @keyframes pop{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:none}}
+  .congrats{font-size:clamp(22px,5.2vw,40px);font-weight:800;color:var(--gold);line-height:1.22;
+    margin:18px auto 16px;max-width:760px}
+  .cta-green{display:inline-block;background:var(--green-cta);color:#fff;border:none;cursor:pointer;
+    font-family:inherit;font-weight:800;border-radius:14px;text-decoration:none;letter-spacing:.4px;
+    padding:clamp(16px,4vw,22px) clamp(22px,5vw,32px);font-size:clamp(15px,3.6vw,23px);
+    box-shadow:0 8px 0 #1f7a37,0 14px 22px rgba(31,122,55,.3);transition:transform .08s,box-shadow .08s}
+  .cta-green:hover{filter:brightness(1.04)}
+  .cta-green:active{transform:translateY(5px);box-shadow:0 3px 0 #1f7a37}
+  .price{font-size:clamp(26px,6.5vw,52px);font-weight:800;line-height:1.16;margin:24px auto 6px;max-width:760px}
+  .price .old{color:#9c8b5e;text-decoration:line-through;font-size:.6em;margin-right:8px}
+  .price .new{color:var(--green)}
+  .timer{font-size:clamp(15px,3.6vw,22px);font-weight:600;margin-top:8px}
+  .timer b{color:var(--red);font-variant-numeric:tabular-nums}
+
+  /* Long copy */
+  #longcopy{display:none;max-width:660px;margin:38px auto 0;text-align:left;animation:fade .6s ease both}
+  @keyframes fade{from{opacity:0}to{opacity:1}}
+  #longcopy .badge{display:inline-block;background:var(--gold);color:#fff;font-weight:800;
+    padding:8px 18px;border-radius:999px;font-size:13px;letter-spacing:.5px;margin-bottom:16px}
+  #longcopy p{font-size:clamp(15px,4vw,17px);line-height:1.7;color:#3c3725;margin-bottom:15px}
+  #longcopy p strong{color:var(--gold)}
+  #longcopy .rule{height:1px;background:rgba(74,59,14,.18);margin:24px 0}
+  #longcopy .anchor{text-align:center;font-size:clamp(21px,5.2vw,32px);font-weight:800;margin:4px 0 16px}
+  #longcopy .anchor .old{color:#9c8b5e;text-decoration:line-through;margin-right:10px}
+  #longcopy .anchor .new{color:var(--green)}
+  #longcopy .cwrap{text-align:center;margin:8px 0 4px}
+
+  footer{background:var(--brown-dark);color:#E8DEC0;text-align:center;padding:38px 18px;
+    font-size:14px;line-height:2}
+  footer a{color:#E8DEC0;text-decoration:none}
+  footer .cnpj{font-weight:800;color:#fff;margin-top:6px}
+
+  @media(max-width:680px){
+    .stage{flex-direction:column;margin-top:22px;gap:18px}
+    .pitch{max-width:100%}
+    .pitch p{margin-bottom:16px}
+    .wheel-area{width:min(56vw,230px)}
+  }
+  @media(prefers-reduced-motion:reduce){.disc{transition:transform 1.2s ease-out}#reveal,#longcopy{animation:none}}
+</style>
+</head>
+<body>
+  <main class="wrap">
+    <h1><span class="warn">⚠️WAIT:</span> Your <span class="npk">NPK Natural</span><br>could be yours for almost nothing!</h1>
+    <p class="sub">But only if luck is on your side 🍀</p>
+
+    <section class="stage" id="spinStage">
+      <div class="wheel-area">
+        <div class="pointer"></div>
+        <div class="rim">
+          <div class="disc" id="disc">
+            <div class="lbl a"><span>20%</span></div>
+            <div class="lbl b"><span>35%</span></div>
+            <div class="lbl c"><span>45%</span></div>
+            <div class="lbl d"><span>73%</span></div>
+          </div>
+        </div>
+        <div class="bulbs" id="bulbs"></div>
+        <div class="hub"></div>
+      </div>
+
+      <div class="pitch">
+        <p><span class="hl">Spin the wheel</span> and discover what gift nature has set aside for your soil.</p>
+        <button class="btn" id="spinBtn">Spin the Wheel</button>
+      </div>
+    </section>
+
+    <section id="reveal">
+      <p class="congrats">🌿 Congratulations! You've just unlocked the biggest gift for your soil:</p>
+      <a class="cta-green" href="#" id="ctaTop">CLICK HERE TO LOCK IN YOUR DISCOUNT</a>
+      <p class="price"><span class="old">$37</span> <span class="new">73% OFF → just $9.90!</span></p>
+      <p class="timer">This gift expires in: <b id="clock">15:00</b></p>
+    </section>
+
+    <section id="longcopy">
+      <span class="badge">🎁 COUPON ACTIVATED — TODAY ONLY</span>
+      <p>Congratulations, you were selected and you've just won the maximum discount on <strong>NPK Natural</strong>!</p>
+      <p>I don't want money to stand in your way when it comes to having the garden, the vegetable patch, or the plants you've always dreamed of...</p>
+      <p>That's why we created an exclusive program: out of every <strong>50 visitors</strong> to this page, we select just one person at random to receive a special offer.</p>
+      <p>And believe it or not, this time <strong>you're the chosen one</strong>.</p>
+      <p>Today you get NPK Natural at <strong>73% off</strong>: instead of the <strong>$37</strong> everyone else pays, you lock it in for just <strong>$9.90</strong>.</p>
+      <p>It's our way of showing how much we value your presence... and how much we believe in the power this formula has to transform your soil from the roots up.</p>
+      <p>Don't let this opportunity slip away. We know this is a key step toward leaving behind yellow leaves, weak plants, and poor harvests — once and for all.</p>
+
+      <div class="rule"></div>
+      <p class="anchor"><span class="old">$37</span> <span class="new">for just $9.90</span></p>
+      <div class="cwrap"><a class="cta-green" href="#" id="ctaMid">I WANT MY NPK NATURAL FOR $9.90</a></div>
+      <div class="rule"></div>
+
+      <p>Now let me take your imagination somewhere extraordinary...</p>
+      <p>Imagine waking up to see your plants greener, stronger, and full of life — without spending a fortune on expensive chemical fertilizers that damage your soil in the long run.</p>
+      <p>Picture your garden truly bearing fruit: deep roots, abundant blooms, tomatoes, herbs, and vegetables your neighbors won't believe grew in your own backyard.</p>
+      <p>We're talking about living, balanced, fertile soil — the kind of result NPK Natural was designed to deliver, week after week.</p>
+      <p>Don't let doubt hold you back. You deserve to watch your garden flourish.</p>
+      <p><strong>This offer won't come around again.</strong> Once you close this page, the price goes back to $37.</p>
+
+      <div class="rule"></div>
+      <p class="anchor"><span class="old">$37</span> <span class="new">for just $9.90</span></p>
+      <div class="cwrap"><a class="cta-green" href="#" id="ctaBot">LOCK IN MY DISCOUNT NOW</a></div>
+    </section>
+  </main>
+
+  <footer>
+    <div>Copyright 2026 - NPK Natural ®</div>
+    <div>All rights reserved</div>
+    <div><a href="#">Terms of Use</a> · <a href="#">Privacy</a></div>
+    <div><a href="#">Disclaimer</a></div>
+    <div class="cnpj">CNPJ – 40.684.718/0001-69 | NPK Natural</div>
+  </footer>
+
+<script>
+  /* ===== CONFIG ===== */
+  var CHECKOUT_URL = "https://go.hotmart.com/F107549895I?ap=c1e4";
+  var TIMER_MINUTES = 15;
+
+  ['ctaTop','ctaMid','ctaBot'].forEach(function(id){
+    var el=document.getElementById(id); if(el) el.href=CHECKOUT_URL;
+  });
+
+  /* Light bulbs around the rim */
+  (function(){
+    var b=document.getElementById('bulbs'),N=16,R=47;
+    for(var i=0;i<N;i++){var a=(i/N)*Math.PI*2,d=document.createElement('i');
+      d.style.left=(50+R*Math.cos(a))+'%';d.style.top=(50+R*Math.sin(a))+'%';b.appendChild(d);}
+  })();
+
+  /* ===== Sound (Web Audio, no external files) ===== */
+  var actx=null, master=null;
+  function audioOn(){
+    try{
+      if(!actx){
+        actx=new (window.AudioContext||window.webkitAudioContext)();
+        master=actx.createGain(); master.gain.value=0.9; master.connect(actx.destination);
+      }
+      if(actx.state==='suspended') actx.resume();
+    }catch(e){ actx=null; }
+    return !!actx;
+  }
+  // Punchy casino "clack" — brighter as the spin builds tension (prog 0..1)
+  function tick(prog){
+    if(!actx) return;
+    var t=actx.currentTime;
+    var base=720+prog*900;                      // pitch rises -> dopamine build-up
+    var o=actx.createOscillator(),o2=actx.createOscillator(),g=actx.createGain();
+    o.type='square';   o.frequency.setValueAtTime(base,t);
+    o.frequency.exponentialRampToValueAtTime(base*0.55,t+0.025);
+    o2.type='triangle';o2.frequency.setValueAtTime(base*2,t);
+    g.gain.setValueAtTime(0.0001,t);
+    g.gain.exponentialRampToValueAtTime(0.22,t+0.003);
+    g.gain.exponentialRampToValueAtTime(0.0001,t+0.045);
+    o.connect(g);o2.connect(g);g.connect(master);
+    o.start(t);o2.start(t);o.stop(t+0.06);o2.stop(t+0.06);
+  }
+  function note(t,freq,dur,vol,type){
+    if(!actx) return;
+    var o=actx.createOscillator(),g=actx.createGain();
+    o.type=type||'triangle'; o.frequency.setValueAtTime(freq,t);
+    g.gain.setValueAtTime(0.0001,t);
+    g.gain.exponentialRampToValueAtTime(vol||0.3,t+0.02);
+    g.gain.exponentialRampToValueAtTime(0.0001,t+(dur||0.4));
+    o.connect(g).connect(master); o.start(t); o.stop(t+(dur||0.4)+0.05);
+  }
+  // Dopaminergic jackpot: rising arpeggio + coin shimmer + final fat chord
+  function winJingle(){
+    if(!actx) return;
+    var t=actx.currentTime+0.04;
+    var arp=[523.25,659.25,783.99,1046.5,1318.5];   // C E G C5 E5
+    arp.forEach(function(f,i){ note(t+i*0.085,f,0.22,0.3,'square'); });
+    var sh=t+0.5;                                    // coin shimmer
+    for(var i=0;i<7;i++) note(sh+i*0.05,1600+i*180,0.12,0.16,'triangle');
+    var c=t+0.55;                                    // fat winning chord
+    [523.25,659.25,783.99].forEach(function(f){ note(c,f,0.9,0.26,'sawtooth'); });
+  }
+
+  /* ===== Spin — JS-driven so ticks stay locked to the visual speed ===== */
+  /* Lands on the green 54% segment (center at 315deg) under the top pointer. */
+  var spun=false;
+  var DURATION=7600;            // ms — visual spin == sound length (perfectly synced)
+  var SPINS=9;                  // full turns
+  var PEGS=24;                  // clicks per full revolution
+  function easeOut(p){ return 1-Math.pow(1-p,5); }  // long, smooth slow-motion tail
+
+  document.getElementById('spinBtn').addEventListener('click',function(){
+    if(spun) return; spun=true; this.disabled=true;
+    audioOn();
+
+    var disc=document.getElementById('disc');
+    disc.style.transition='none';                   // we animate frame-by-frame
+    var jitter=(Math.random()*8)-4;
+    var target=SPINS*360 + 45 + jitter;             // 45 = bring 315deg center to top
+    var pegStep=360/PEGS;
+    var start=null, lastPeg=0, lastTick=0;
+
+    function frame(ts){
+      if(start===null) start=ts;
+      var p=Math.min((ts-start)/DURATION,1);
+      var eased=easeOut(p);
+      var angle=eased*target;
+      disc.style.transform='rotate('+angle+'deg)';
+
+      // fire a click each time a peg crosses the pointer — naturally slows with the wheel
+      var pegNow=Math.floor(angle/pegStep);
+      if(pegNow>lastPeg && (ts-lastTick)>22){       // 22ms guard avoids an early buzz
+        tick(p); lastTick=ts;
+      }
+      lastPeg=pegNow;
+
+      if(p<1){ requestAnimationFrame(frame); }
+      else {                                         // settle: tiny smooth slow-motion nudge
+        disc.style.transition='transform .55s cubic-bezier(.22,1,.3,1)';
+        disc.style.transform='rotate('+(target+2.2)+'deg)';
+        winJingle();
+        setTimeout(showReveal, 950);
+      }
+    }
+    requestAnimationFrame(frame);
+  });
+
+  function showReveal(){
+    document.getElementById('spinStage').style.display='none';
+    document.getElementById('reveal').style.display='block';
+    document.getElementById('longcopy').style.display='block';
+    document.getElementById('reveal').scrollIntoView({behavior:'smooth',block:'start'});
+    startTimer();
+  }
+
+  /* Countdown — persists per visitor */
+  function startTimer(){
+    var clock=document.getElementById('clock'),KEY='npk_deadline';
+    var deadline=parseInt(localStorage.getItem(KEY)||'0',10),now=Date.now();
+    if(!deadline||deadline<now){deadline=now+TIMER_MINUTES*60*1000;
+      try{localStorage.setItem(KEY,deadline);}catch(e){}}
+    function tick(){
+      var left=Math.max(0,deadline-Date.now());
+      var m=Math.floor(left/60000),s=Math.floor((left%60000)/1000);
+      clock.textContent=(m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+      if(left<=0){clearInterval(iv);clock.textContent='00:00';}
+    }
+    tick(); var iv=setInterval(tick,1000);
+  }
+</script>
+</body>
+</html>
